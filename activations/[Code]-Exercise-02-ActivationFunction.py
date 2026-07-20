@@ -25,6 +25,7 @@ def calculate_relu(x):
     Returns:
         result (float): the value of ReLU(x).
     """
+    return float(max(0, x))
     
 
 
@@ -41,6 +42,7 @@ def calculate_sigmoid(x):
     Returns:
         float: the value of sigmoid(x).
     """
+    return float(1 / (1 + math.exp(-x)))
 
 
 def calculate_elu(x):
@@ -57,6 +59,11 @@ def calculate_elu(x):
     Returns:
         result (float): the value of ELU(x).
     """
+    alpha = 0.01
+    if x >= 0:
+        return x
+    else:
+        return alpha * (math.exp(x) - 1)
     
 
 
@@ -73,11 +80,25 @@ def calculate_activation_function(x, act_name):
         float: the value of f(x) corresponding to act_name,
         or None if act_name is invalid.
     """
+    if act_name == "relu":
+        return calculate_relu(x)
+    elif act_name == "sigmoid":
+        return calculate_sigmoid(x)
+    elif act_name == "elu":
+        return calculate_elu(x)
+    else:
+        return None
     
 
 
 def interactive_activation_function():
-    pass
+    while True:
+        act = input("What function do you want to use (relu, sigmoid, elu): ")
+        if act in ["relu", "sigmoid", "elu"]:
+            break
+    x = float(input("Enter x: "))
+    print(calculate_activation_function(x, act))
+
 
 if __name__ == "__main__":
     # Quick tests
