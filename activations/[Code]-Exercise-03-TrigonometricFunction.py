@@ -5,7 +5,7 @@ def factorial(x):
     """
     Calculate the factorial of x (x! where x is a non-negative integer).
     """
-    
+    return math.factorial(x)
 
 
 def approximate_sin(x, n):
@@ -19,6 +19,10 @@ def approximate_sin(x, n):
     Returns:
         sin_approx (float): the approximate value of sin(x).
     """
+    r = 0
+    for i in range(n + 1):
+        r += ((-1)**i * x**(2 * i + 1)) / factorial(2 * i + 1)
+    return r
     
 
 
@@ -33,7 +37,10 @@ def approximate_cos(x, n):
     Returns:
         cos_approx (float): the approximate value of cos(x).
     """
-    
+    r = 0
+    for i in range(n + 1):
+        r += ((-1)**i * x**(2 * i)) / factorial(2 * i)
+    return r
 
 def approximate_sinh(x, n):
     """
@@ -46,6 +53,10 @@ def approximate_sinh(x, n):
     Returns:
         sinh_approx (float): the approximate value of sinh(x).
     """
+    r = 0
+    for i in range(n + 1):
+        r += (x**(2 * i + 1)) / factorial(2 * i + 1)
+    return r
     
 
 
@@ -60,6 +71,10 @@ def approximate_cosh(x: float, n: int) -> float:
     Returns:
         cosh_approx (float): the approximate value of cosh(x).
     """
+    r = 0
+    for i in range(n + 1):
+        r += (x**(2 * i)) / factorial(2 * i)
+    return r
 
 
 
