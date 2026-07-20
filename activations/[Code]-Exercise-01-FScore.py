@@ -19,14 +19,27 @@ def calculate_f1_score(tp, fp, fn):
         f1_score (float): the F1-Score value,
         or None if the input is invalid.
     """
-    # 1) Validate types (reject bool because bool is a subclass of int)
-    
-
-    # 2) Validate non-negative values
-    
-
-    # 3) Calculate Precision, Recall, F1-Score (handle division by zero)
-    
+    check = {tp: "TP", fp: "FP", fn: "FN"}
+    for item in check:
+        # 1) Validate types (reject bool because bool is a subclass of int)
+        if isinstance(item, bool) or not isinstance(item, int):
+            print(f"{check[item]} must be an int")
+            return None
+        # 2) Validate non-negative values
+        if item < 0:
+            print(f"{check[item]} must be zero or a positive number")
+            return None
+    # 3) Calculate Precision, Recall, F1-Score
+    try:
+        if tp == 0:
+            return 0.0
+            
+        precision = tp / (tp + fp)
+        recall = tp / (tp + fn)
+        f1_score = 2 * (precision * recall) / (precision + recall)
+        return f1_score
+    except ZeroDivisionError:
+        return None
 
 
 if __name__ == "__main__":
