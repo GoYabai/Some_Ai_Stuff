@@ -1,7 +1,6 @@
+
 import numpy as np
-import matplotlib.pyplot as plt
-from collections import Counter
-from sklearn.neighbors import KNeighborsClassifier, KDTree
+from sklearn.neighbors import KDTree, KNeighborsClassifier
 
 # ==========================================
 # PART 1: DATA PREPARATION
